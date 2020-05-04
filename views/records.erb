@@ -1,0 +1,26 @@
+<form class="form-inline" action="/filter/course_type">
+  <div class="input-group mb-3">
+    <input type="text" name="course_type" class="form-control" placeholder="course type" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit" id="button">Search</button>
+    </div>
+      <a class="btn btn-outline-success" href="/filter/unexpired" style="margin-left:5px">unexpired</a>
+      <a class="btn btn-outline-success" href="/records" style="margin-left:5px">all</a>
+
+  </div>
+</form>
+<% @records.each do |record| %>
+    <div class="card">
+        <div class="card-header">
+            <a href="/record/<%=record["id"]%>"><%=record["subject"]%></a>
+        </div>
+        <div class="card-body">
+            <p class="card-text">type : <%= record["course_type"]%></p>
+            <p class="card-text">url : <a href="<%=record["url"]%>"><%=record["url"]%></a></p>
+            <p class="card-text"><%=record["price"]%> <%= record["currency"]%></p>
+            <p class="card-text"><%= record["intro"]%></p>
+
+            <p class="card-text">published : <%= record["published"]%></p>
+        </div>
+    </div>
+<%end%>

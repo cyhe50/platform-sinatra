@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="jumbotron">
+            <h3 class="display-4"><%= @record["subject"]%></h3>
+            <p>url : <a href="#"><%= @record["url"]%></a></p>
+
+            <p>課程類型：<span class="badge badge-info"><%= @record["course_type"]%></span></p>
+            <p>有效期限：<%= @record["exp_time"]%>天</p>
+            <p>$ <%= @record["price"]%> <%= @record["currency"]%></p>
+            <p>上架 : <%= @record["published"]%></p>
+            <hr class="my-4">
+            <h5>課程介紹</h5>
+            <p><%= @record["intro"]%></p>
+            <hr class="my-4">
+            <p>狀態：
+                <%if @record["records"].first["order_status"] == false%>
+                    無法使用
+                <%else%>
+                    可使用
+                <%end%>
+            </p>
+            <p>付款：<%= @record["records"].first["payment_status"]%></p>
+            <p>有效日期：<%= @record["records"].first["exp_date"]%></p>
+        </div>
+        <div class="panel-footer"><a href='/records'>Back</div>
+      </div>
+    </div>
+    
+
+  </div>

@@ -1,0 +1,19 @@
+<% if @error%>
+  <p class="alert" style="color:red"><%= @error%></p>
+<%end%>
+<form action="/signup" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password confirmation</label>
+    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+  </div>
+  <button type="submit" class="btn btn-primary">sign up</button>
+</form>

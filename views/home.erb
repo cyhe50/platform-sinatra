@@ -1,0 +1,17 @@
+<div class="row row-cols-1 row-cols-md-3">
+    <% @courses.each do |course|%>
+      <a href='/course/<%=course["id"]%>'>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <!-- <img src="..." class="card-img-top" alt="..."> -->
+              <div class="card-body">
+                <h5 class="card-title"><%=course["subject"]%></h5>
+                <p class="card-text"><%= course["course_type"]%></p>
+                <hr>
+                <p class="card-text"><%= course["intro"]%></p>
+              </div>
+            </div>
+          </div>
+      </a>
+    <%end%>
+</div>

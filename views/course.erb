@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="jumbotron">
+            <h3 class="display-4"><%= @course["subject"]%></h3>
+            <p>url : <a href="#"><%= @course["url"]%></a></p>
+
+            <p>課程類型：<span class="badge badge-info"><%= @course["course_type"]%></span></p>
+            <p>有效期限：<%= @course["exp_time"]%>天</p>
+            <p>$ <%= @course["price"]%> <%= @course["currency"]%></p>
+
+            <hr class="my-4">
+            <h5>課程介紹</h5>
+            <p><%= @course["intro"]%></p>
+            <hr class="my-4">
+            <% if !@bought %>
+              <a class="btn btn-outline-success" href="<%=@course["id"]%>/buy" role="button" onclick="return confirm('Are you sure?')">Buy it!</a>
+            <% end %>
+        </div>
+        <div class="panel-footer"><a href='/courses'>Back</div>
+      </div>
+    </div>
+    
+
+  </div>
