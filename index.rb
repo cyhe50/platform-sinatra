@@ -39,7 +39,7 @@ get '/course/:id/buy' do
         @error = response_body["error_message"]
         erb :error, {:layout => :index_layout}
     else
-        redirect "/record/#{response.body}"
+        redirect "/record/#{response_body}.to_i"
     end
 end
 
@@ -50,19 +50,19 @@ get '/records' do
     erb :records, {:layout => :index_layout}
 end
 
-get '/record/:course_id' do
-    api = "#{path}/orderrecord/#{params[:course_id]}"
+get '/record/:record_id' do
+    api = "#{path}/orderrecord/#{params[:record_id]}"
     response = Faraday.get(api,nil,{'access_token' => session[:access_token]})
     @record = JSON.parse(response.body)
     erb :single_record, {:layout => :index_layout}
 end
 
 get '/filter/course_type' do
-    api = "#{path}/orderrecord/filter/course_type/?type=#{params[:course_type]}"
+    api = "#{path}/orderrecord/"
     response = Faraday.get(api,nil,{'access_token' => session[:access_token]})
     @records = JSON.parse(response.body)
-    puts "#{@records}"
-    erb :records, {:layout => :index_layout}
+    @course_type = params[:course_type]
+    erb :filter_records, {:layout => :index_layout}
 end
 
 get '/filter/unexpired' do
@@ -94,13 +94,13 @@ end
 post '/signup' do
     api = "#{path}/signup/?user[email]=#{params[:email]}&user[password]=#{params[:password]}&user[password_confirmation]=#{params[:password_confirmation]}"
     response = Faraday.post(api)
-    response_body = JSON.parse[response.body]
+    response_body = JSON.parse(response.body)
     if response_body["error_code"]
         @error = response_body["error_message"]
         erb :signup, {:layout => :index_layout}
     else
-        session[:access_token] = response.headers["access_token"]        
-        erb :home, {:layout => :index_layout}
+        session[:access_token] = response.headers["access_token"] 
+        redirect '/'
     end
 end
 

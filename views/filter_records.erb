@@ -10,16 +10,18 @@
   </div>
 </form>
 <% @records.reverse_each do |record| %>
-    <div class="card">
-        <div class="card-header">
-            <a href="/record/<%=record["id"]%>"><%=record["course"]["subject"]%></a>
-        </div>
-        <div class="card-body">
-            <p class="card-text">類型：<%= record["course"]["course_type"]%></p>
-            <p class="card-text">製造日期：<%= record["created_at"]%></p>
-            <p class="card-text">有效日期：<%= record["exp_date"]%></p>
+    <% if record["course"]["course_type"] == @course_type%>
+        <div class="card">
+            <div class="card-header">
+                <a href="/record/<%=record["id"]%>"><%=record["course"]["subject"]%></a>
+            </div>
+            <div class="card-body">
+                <p class="card-text">類型：<%= record["course"]["course_type"]%></p>
+                <p class="card-text">製造日期：<%= record["created_at"]%></p>
+                <p class="card-text">有效日期：<%= record["exp_date"]%></p>
 
-            <p class="card-text">是否上架 : <%= record["course"]["published"]%></p>
+                <p class="card-text">是否上架 : <%= record["course"]["published"]%></p>
+            </div>
         </div>
-    </div>
+    <%end%>
 <%end%>
